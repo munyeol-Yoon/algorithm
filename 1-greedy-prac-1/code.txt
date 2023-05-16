@@ -1,0 +1,156 @@
+# 나의 답 (파이썬)==============================================
+
+n, m, k = map(int, input().split())
+print(n, m, k)
+# k 는 한 숫자가 더해질수 있는 횟수, m 은 연산 횟수, n 은 배열의 크기
+data = list(map(int, input().split()))
+print(data)
+
+result = 0
+# 결과를 저장
+
+data.sort()
+# 입력한 데이터 정렬
+
+big = data[len(data) - 1]
+# 가장 큰 값
+littleBig = data[len(data) - 2]
+# 두 번째로 큰 값
+print(big)
+print(littleBig)
+
+end_loop = 0
+# 루프를 끝내기 위한 변수 end_loop
+while end_loop != 1:
+    # end_loop 가 1이 되면 종료된다.
+    for i in range(k):
+        # 한 숫자가 더해질수 있는 횟수인 k 변수 만큼 for 루프가 반복된다
+        if m <= 0:
+            # 연산횟수인 m 이 0 과 같아지거나 적어지면 종료된다.
+            end_loop = 1
+            break
+        # 가장 큰값인 big 변수를 result 에 더해준다.
+        result += big
+        print("result1:",result)
+        # 연산횟수인 m 변수를 1 빼준다.
+        m -= 1
+        print("m:",m)
+    
+    if m <= 0:
+        end_loop = 1
+        break
+    # 두번째로 큰값인 littleBig 변수를 result 에 더해준다.
+    result += littleBig
+    print("result2:",result)
+    # 연산횟수인 m 변수를 1 빼준다.
+    m -= 1
+    print("m2:",m)
+
+print(result)
+
+
+
+
+
+
+
+# 영은님 답 (자바)==============================================
+
+int N, M, K;
+Scanner scanner = new Scanner(System.in);
+
+N = scanner.nextInt();
+M = scanner.nextInt();
+K = scanner.nextInt();
+
+Integer arr[] = new Integer[N];
+
+for(int i =0; i < N ; i++){
+arr[i] = scanner.nextInt();
+}
+scanner.close();
+
+Arrays.sort(arr, Collections.reverseOrder()); // 오름차순 정렬
+
+int first = arr[0]; // 가장 큰 수
+int second = arr[1]; // 두 번째로 큰 수
+int sum1 = 0; //가장 큰 수의 합
+int sum2 = 0; //두 번째로 큰 수의 합
+
+// 수열의 길이 K+1
+// 수열 반복 횟수 M/(K+1)
+// 가장 큰 수가 나오는 횟수 count = K * M/(K+1) + M%(K+1)
+// 두 번째 큰 수가 나오는 횟수 M - count
+int count = (K * M/(K+1) + M%(K+1));
+sum1 = first * (K * M/(K+1) + M%(K+1));
+sum2 = second * (M - count);
+
+System.out.println(sum1 + sum2);
+
+
+
+
+
+
+
+# 저자 답 (파이썬)==============================================
+
+# N, M, K를 공백을 기준으로 구분하여 입력 받기
+n, m, k = map(int, input().split())
+# N개의 수를 공백을 기준으로 구분하여 입력 받기
+data = list(map(int, input().split()))
+
+data.sort() # 입력 받은 수들 정렬하기
+first = data[n - 1] # 가장 큰 수
+second = data[n - 2] # 두 번째로 큰 수
+
+# 가장 큰 수가 더해지는 횟수 계산
+count = int(m / (k + 1)) * k
+count += m % (k + 1)
+
+result = 0
+result += (count) * first # 가장 큰 수 더하기
+result += (m - count) * second # 두 번째로 큰 수 더하기
+
+print(result) # 최종 답안 출력
+
+
+
+
+# 저자 답 (자바)==============================================
+
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // N, M, K를 공백을 기준으로 구분하여 입력 받기
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int k = sc.nextInt();
+
+        // N개의 수를 공백을 기준으로 구분하여 입력 받기
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Arrays.sort(arr); // 입력 받은 수들 정렬하기
+        int first = arr[n - 1]; // 가장 큰 수
+        int second = arr[n - 2]; // 두 번째로 큰 수
+
+        // 가장 큰 수가 더해지는 횟수 계산
+        int cnt = (m / (k + 1)) * k;
+        cnt += m % (k + 1);
+
+        int result = 0;
+        result += cnt * first; // 가장 큰 수 더하기
+        result += (m - cnt) * second; // 두 번째로 큰 수 더하기
+
+        System.out.println(result);
+    }
+
+}

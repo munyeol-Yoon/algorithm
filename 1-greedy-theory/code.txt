@@ -1,0 +1,63 @@
+# 나의 답 (파이썬)
+
+n = 1260
+
+coinType = [ 500, 100, 50, 10]
+
+result = 0
+
+for i in coinType:
+    result = result + (n // i) # 500원 먼저 최대로 넣음 첫 루프때 n 은 1260 i 는 500 나눈값인 2를 result 에 넣는다.
+    n = n % i 
+    # 왼쪽 변수에 오른쪽 값을 나눈후 그 나머지를 할당한다. 첫 루프때 n 은 1260 i 는 500 이므로 나머지하고 남은 값을
+    # 260 을 넣어준다.
+print(result);
+
+# 영은님 답 (자바)
+
+Scanner sc = new Scanner(System.in);
+int money = sc.nextInt(); // 손님한테 받는 돈
+int count = 0; // 동전의 개수
+
+int coin_type[] = {500,100,50,10};
+
+for (int i = 0; i < coin_type.length; i++) {
+    count += money / coin_type[i];
+    money %= coin_type[i];
+}
+System.out.print(count);
+
+
+# 저자 답 (파이썬)
+
+n = 1260
+count = 0
+
+# 큰 단위의 화폐부터 차례대로 확인하기
+coin_types = [500, 100, 50, 10]
+
+for coin in coin_types:
+    count += n // coin # 해당 화폐로 거슬러 줄 수 있는 동전의 개수 세기
+    n %= coin
+
+print(count)
+
+# 저자 답 (자바)
+
+public class Main {
+
+    public static void main(String[] args) {
+        int n = 1260;
+        int cnt = 0;
+        int[] coinTypes = {500, 100, 50, 10};
+
+        for (int i = 0; i < 4; i++) {
+            int coin = coinTypes[i];
+            cnt += n / coin;
+            n %= coin;
+        }
+
+        System.out.println(cnt);
+    }
+
+}
